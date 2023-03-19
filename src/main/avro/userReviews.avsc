@@ -1,0 +1,30 @@
+{
+  "namespace": "com.example.kafka.models",
+  "type": "record",
+  "name": "UserReviews",
+  "fields": [
+    {
+      "name": "userId",
+      "type": "string"
+    },
+    {
+      "name": "timestamp",
+      "type": {
+        "type": "int",
+        "logicalType": "date"
+      }
+    },
+    {
+      "name": "productId",
+      "type": "int"
+    },
+    {
+      "name": "rating",
+      "type": "double"
+    },
+    {
+      "name": "reviewText",
+      "type": "string"
+    }
+  ]
+}

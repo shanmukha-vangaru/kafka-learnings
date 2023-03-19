@@ -1,0 +1,22 @@
+{
+  "namespace": "com.example.kafka.models",
+  "type": "record",
+  "name": "UserLogins",
+  "fields": [
+    {
+      "name": "userId",
+      "type": "string"
+    },
+    {
+      "name": "timestamp",
+      "type": {
+        "type": "int",
+        "logicalType": "date"
+      }
+    },
+    {
+      "name": "loginType",
+      "type": "string"
+    }
+  ]
+}

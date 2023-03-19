@@ -1,0 +1,41 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5436/kafka_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  kafka:
+    streams:
+      application-id: spring-boot-kafka
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
+      properties:
+        schema.registry.url: http://localhost:8081
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      properties:
+        specific.avro.reader: true
+        schema.registry.url: http://localhost:8081
+    consumers:
+      user-clicks:
+        group.id: user-clicks-0
+        topics: user-clicks
+      user-purchases:
+        group.id: user-purchases-0
+        topics: user-purchases
+      user-searches:
+        group.id: user-searches-0
+        topics: user-searches
+      user-reviews:
+        group.id: user-reviews-0
+        topics: user-reviews
+      user-logins:
+        group.id: user-logins-0
+        topics: user-logins
