@@ -23,6 +23,7 @@ spring:
       properties:
         specific.avro.reader: true
         schema.registry.url: http://localhost:8081
+        allow.auto.create.topics: false
     consumers:
       user-clicks:
         group.id: user-clicks-0

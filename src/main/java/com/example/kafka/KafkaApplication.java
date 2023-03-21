@@ -1,5 +1,6 @@
 package com.example.kafka;
 
+import org.apache.kafka.clients.admin.NewTopic;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +17,11 @@ public class KafkaApplication {
 	@Bean
 	public ModelMapper getModelMapper() {
 		return new ModelMapper();
+	}
+
+	@Bean
+	public NewTopic createTopic() {
+		return new NewTopic("user-clicks", 2,Short.parseShort("2"));
 	}
 
 }
