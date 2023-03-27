@@ -22,8 +22,8 @@ public class UserClicksConsumer {
 
     @KafkaListener(id = "user-clicks", topics = "user-clicks", groupId = "user-clicks-0")
     public void consume(UserClicks userClicks) {
-        logger.info("Received User Clicks: " + userClicks.toString());
         com.example.kafka.entities.UserClicks entity = UserClicksMapper.getEntity(userClicks);
+        logger.info("Received User Clicks: " + userClicks.toString());
         userClicksRepository.save(entity);
     }
 }

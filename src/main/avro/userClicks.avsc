@@ -23,7 +23,7 @@
       "type": {
         "type": "enum",
         "name": "Click",
-        "symbols": ["PRODUCT_CLICK", "CATEGORY_CLICK"]
+        "symbols": ["PRODUCT_CLICK", "CATEGORY_CLICK", "REVIEWS_CLICK", "LIKE_CLICK", "DISLIKE_CLICK"]
       }
     }
   ]

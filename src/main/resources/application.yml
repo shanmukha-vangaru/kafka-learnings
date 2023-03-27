@@ -1,4 +1,8 @@
 spring:
+  profiles:
+    active: "confluent-cloud"
+  config:
+    import: optional:file:.env[.properties]
   jpa:
     hibernate:
       ddl-auto: update
@@ -17,11 +21,13 @@ spring:
       value-serializer: io.confluent.kafka.serializers.KafkaAvroSerializer
       properties:
         schema.registry.url: http://localhost:8081
+        allow.auto.create.topics: false
     consumer:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
       properties:
         specific.avro.reader: true
+        allow.auto.create.topics: false
         schema.registry.url: http://localhost:8081
     consumers:
       user-clicks:
@@ -39,3 +45,30 @@ spring:
       user-logins:
         group.id: user-logins-0
         topics: user-logins
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: confluent-cloud
+
+  kafka:
+    bootstrap-servers: ${BOOTSTRAP_SERVERS}
+    topics:
+      replication-factor: 3
+    properties:
+      sasl:
+        mechanism: PLAIN
+        jaas.config: ${JASS_CONFIG}
+      security.protocol: SASL_SSL
+      basic:
+        auth:
+          credentials.source: USER_INFO
+          user.info: ${USER_INFO}
+    producer:
+      properties:
+        schema.registry.url: ${SCHEMA_REGISTRY_URL}
+    consumer:
+      properties:
+        schema.registry.url: ${SCHEMA_REGISTRY_URL}
