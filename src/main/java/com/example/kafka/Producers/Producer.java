@@ -17,32 +17,24 @@ public class Producer {
     private static final Logger logger = LoggerFactory.getLogger(Producer.class);
 
     @Autowired
-    private KafkaTemplate<String, Object> kafkaTemplate;
+    private KafkaTemplate<String, User> kafkaTemplate;
 
     public <T> void sendMessage(T message, String topic) {
-        if(message instanceof UserClicks) {
-            this.produce(DataGenerator.generate(UserClicks.class), topic);
-        } else if (message instanceof UserLogins) {
-            this.produce(DataGenerator.generate(UserLogins.class), topic);
-        } else if (message instanceof UserPurchases) {
-            this.produce(DataGenerator.generate(UserPurchases.class), topic);
-        } else if (message instanceof UserReviews) {
-            this.produce(DataGenerator.generate(UserReviews.class), topic);
-        } else if (message instanceof UserSearches) {
-            this.produce(DataGenerator.generate(UserSearches.class), topic);
+        if (message instanceof User) {
+            this.produce(DataGenerator.generateUser(), topic);
         }
     }
 
-    public <T> void produce(T message, String topic) {
-        ListenableFuture<SendResult<String, Object>> future = kafkaTemplate.send(topic, message);
-        future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
+    public void produce(User message, String topic) {
+        ListenableFuture<SendResult<String, User>> future = kafkaTemplate.send(topic, message);
+        future.addCallback(new ListenableFutureCallback<SendResult<String, User>>() {
             @Override
             public void onFailure(Throwable ex) {
                 logger.error("Unable to send message=[{}] due to: {}", message, ex.getMessage());
             }
 
             @Override
-            public void onSuccess(SendResult<String, Object> result) {
+            public void onSuccess(SendResult<String, User> result) {
                 logger.info("Sent message=[{}] with offset=[{}]", message, result.getRecordMetadata().offset());
             }
         });

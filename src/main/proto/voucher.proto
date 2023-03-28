@@ -1,0 +1,15 @@
+syntax = "proto3";
+package models;
+option java_package = "com.example.kafka.models";
+
+enum VoucherType {
+  DISCOUNT = 0;
+  ON_BOARDING = 1;
+}
+
+message Voucher {
+  int64 id = 1;
+  string name = 2;
+  VoucherType voucher = 3;
+  float discount = 4;
+}

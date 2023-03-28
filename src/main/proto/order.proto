@@ -1,0 +1,15 @@
+syntax = "proto3";
+package models;
+option java_package = "com.example.kafka.models";
+option java_multiple_files = true;
+import "address.proto";
+import "item.proto";
+import "voucher.proto";
+
+message Order {
+  int64 orderId = 1;
+  AddressType orderFrom = 2;
+  AddressType orderTo = 3;
+  repeated Item items = 4;
+  Voucher voucher = 5;
+}

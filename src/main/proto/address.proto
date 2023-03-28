@@ -1,0 +1,22 @@
+syntax = "proto3";
+package models;
+option java_package = "com.example.kafka.models";
+option java_multiple_files = true;
+
+enum AddressType {
+  CURRENT_ADDRESS = 0;
+  PERMANENT_ADDRESS = 1;
+}
+
+message Address {
+  string doorNumber = 1;
+  string street = 2;
+  string landmark = 3;
+  string city = 4;
+  string state = 5;
+  int32 zipcode = 6;
+  string country = 7;
+  double latitude = 8;
+  double longitude = 9;
+  AddressType addressType = 10;
+}

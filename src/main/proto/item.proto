@@ -1,0 +1,17 @@
+syntax = "proto3";
+package models;
+option java_package = "com.example.kafka.models";
+option java_multiple_files = true;
+
+enum Cuisine {
+  INDIAN = 0;
+  ITALIAN = 1;
+  CHINESE = 2;
+}
+
+message Item {
+  int64 itemId = 1;
+  string name = 2;
+  float price = 3;
+  Cuisine cuisine = 4;
+}

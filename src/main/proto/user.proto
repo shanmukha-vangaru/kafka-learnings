@@ -1,0 +1,39 @@
+syntax = "proto3";
+package models;
+option java_package = "com.example.kafka.models";
+option java_multiple_files = true;
+import "google/protobuf/descriptor.proto";
+import "address.proto";
+import "order.proto";
+
+enum UserType {
+  ELITE = 0;
+  PREMIUM = 1;
+  NEW = 2;
+  OCCASIONAL = 3;
+}
+
+enum PhoneNumberType {
+  MOBILE = 0;
+  HOME = 1;
+  WORK = 2;
+}
+
+message PhoneNumber {
+  string number = 1;
+  PhoneNumberType phoneNumberType = 2;
+}
+
+message User {
+  int32 userId = 1;
+  string firstName = 2;
+  string lastName = 3;
+  UserType userType = 4;
+  repeated PhoneNumber phoneNumber = 5;
+  repeated string hobbies = 6;
+  bool isActive = 7;
+  double salary = 8;
+  repeated Address address = 9;
+  string email = 10;
+  repeated Order order = 11;
+}
