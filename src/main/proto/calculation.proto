@@ -1,0 +1,19 @@
+syntax = "proto3";
+package models;
+option java_package = "com.example.kafka.models";
+option java_multiple_files = true;
+
+enum Operator {
+  ADDITION = 0;
+  MULTIPLICATION = 1;
+  DIVISION = 2;
+  SUBTRACTION = 3;
+}
+
+message Calculation {
+  string requestId = 1;
+  int64 userId = 2;
+  Operator operator = 3;
+  float operand1 = 4;
+  float operand2 = 5;
+}

@@ -6,6 +6,7 @@ spring:
   kafka:
     streams:
       application-id: spring-boot-kafka
+      application-server: localhost:8080
     bootstrap-servers: localhost:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer

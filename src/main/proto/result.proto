@@ -3,8 +3,9 @@ package models;
 option java_package = "com.example.kafka.models";
 option java_multiple_files = true;
 
-message User {
-  int64 userId = 1;
-  string firstName = 2;
-  string lastName = 3;
+import "calculation.proto";
+
+message Result {
+  Calculation request = 1;
+  float result = 2;
 }
